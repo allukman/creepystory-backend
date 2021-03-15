@@ -72,7 +72,7 @@ module.exports = {
             me_photo_profile: login[0].me_photo_profile,
             me_photo_cover: login[0].me_photo_cover
           }
-          const token = jwt.sign(peyLoad, 'CS123', { expiresIn: '7d' })
+          const token = jwt.sign(peyLoad, 'CS123', { expiresIn: '365d' })
           peyLoad = { ...peyLoad, token }
           const result = {
             ...peyLoad,
