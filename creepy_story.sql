@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2021 at 01:18 PM
+-- Generation Time: Apr 12, 2021 at 01:51 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.19
 
@@ -43,8 +43,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`ac_Id`, `ac_name`, `ac_email`, `ac_phone`, `ac_password`, `ac_status`, `ac_created_at`, `ac_updated_at`) VALUES
-(4, 'Al Lukman', 'lukman2@gmail.com', '087719182718', '$2b$10$/BHjjX/hkmRTQLGA/VfBcuXFKP4VsH6UedPbuIzGTKXc.tk1XYzE6', 1, '2021-02-16 13:18:47', '2021-02-16 13:18:47'),
-(5, 'Al Lukman', 'lukman3@gmail.com', '087719182718', '$2b$10$QGiAYxW9jKYNvY/PeRGYf.TRmhhrn0jz1lhQYwg1sOmMFdnsCwJu6', 1, '2021-02-20 03:01:04', '2021-02-20 03:01:04');
+(1, 'Al Lukman', 'lukman18@gmail.com', '087719182718', '$2b$10$yg/HrRR8.mk9oCsLiXgnROx7HC5R62qz/qQxIUgwUyTxWzgpLcpHC', 1, '2021-04-12 11:21:59', '2021-04-12 11:21:59'),
+(2, 'Dono Handoko', 'dono.handoko1@gmail.com', '087719182718', '$2b$10$Hd63wAKgH9VscKUxHO0Ydu9YcLuWrPr5/HTNUoUqsD/Fowz4POqji', 1, '2021-04-12 11:23:06', '2021-04-12 11:23:06'),
+(3, 'Joko Susilo', 'joko112@gmail.com', '087719182718', '$2b$10$5Av7sQy8yVakyoQ37//ZO.0ZgEy7730XKxfugNZQST6jirSx/vnN2', 1, '2021-04-12 11:23:56', '2021-04-12 11:23:56'),
+(4, 'Hendra Bambang', 'henda223@gmail.com', '087719182718', '$2b$10$AdL6oNaOQIIGVfTvN1DlfuYt5a08UPpGYY49ZU3VMio/ifVorF3hO', 1, '2021-04-12 11:24:19', '2021-04-12 11:24:19');
 
 -- --------------------------------------------------------
 
@@ -64,10 +66,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`ct_id`, `ct_name`, `ct_created_at`, `ct_udpated_at`) VALUES
-(3, 'Riddle', '2021-02-15 02:25:52', '2021-02-17 14:10:00'),
-(4, 'Urban Legend', '2021-02-17 14:10:17', '2021-02-17 14:10:17'),
-(5, 'Real Story', '2021-02-17 14:10:42', '2021-02-17 14:10:42'),
-(6, 'folklorea', '2021-02-20 03:02:56', '2021-02-20 03:02:56');
+(1, 'Creepy Pasta', '2021-04-12 11:30:53', '2021-04-12 11:30:53'),
+(2, 'Riddle', '2021-04-12 11:31:05', '2021-04-12 11:31:05'),
+(3, 'Urban Legend', '2021-04-12 11:31:12', '2021-04-12 11:31:12'),
+(4, 'Real Experience', '2021-04-12 11:31:23', '2021-04-12 11:31:23');
 
 -- --------------------------------------------------------
 
@@ -88,15 +90,16 @@ CREATE TABLE `favorite` (
 --
 
 INSERT INTO `favorite` (`fa_id`, `me_id`, `st_id`, `fa_created_at`, `fa_updated_at`) VALUES
-(9, 3, 27, '2021-02-20 03:19:09', '2021-02-20 03:19:09'),
-(10, 3, 19, '2021-02-20 03:39:19', '2021-02-20 03:39:19'),
-(11, 3, 19, '2021-02-20 03:39:20', '2021-02-20 03:39:20'),
-(12, 3, 19, '2021-02-20 03:39:21', '2021-02-20 03:39:21'),
-(13, 3, 21, '2021-02-20 03:43:44', '2021-02-20 03:43:44'),
-(14, 3, 21, '2021-02-20 03:43:44', '2021-02-20 03:43:44'),
-(15, 3, 21, '2021-02-20 03:43:45', '2021-02-20 03:43:45'),
-(16, 3, 21, '2021-02-20 03:43:45', '2021-02-20 03:43:45'),
-(17, 3, 21, '2021-02-20 03:43:46', '2021-02-20 03:43:46');
+(1, 1, 3, '2021-04-12 11:47:17', '2021-04-12 11:47:17'),
+(2, 1, 5, '2021-04-12 11:47:34', '2021-04-12 11:47:34'),
+(3, 2, 1, '2021-04-12 11:47:38', '2021-04-12 11:47:38'),
+(4, 2, 8, '2021-04-12 11:47:45', '2021-04-12 11:47:45'),
+(5, 3, 7, '2021-04-12 11:47:49', '2021-04-12 11:47:49'),
+(6, 3, 6, '2021-04-12 11:47:53', '2021-04-12 11:47:53'),
+(7, 3, 3, '2021-04-12 11:47:56', '2021-04-12 11:47:56'),
+(8, 4, 8, '2021-04-12 11:48:00', '2021-04-12 11:48:00'),
+(9, 4, 2, '2021-04-12 11:48:02', '2021-04-12 11:48:02'),
+(10, 4, 3, '2021-04-12 11:48:05', '2021-04-12 11:48:05');
 
 -- --------------------------------------------------------
 
@@ -109,6 +112,22 @@ CREATE TABLE `label` (
   `st_id` int(11) UNSIGNED NOT NULL,
   `la_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `label`
+--
+
+INSERT INTO `label` (`la_id`, `st_id`, `la_name`) VALUES
+(1, 1, 'murder'),
+(2, 1, 'rituals'),
+(3, 2, 'rituals'),
+(4, 2, 'strange'),
+(5, 3, 'deaths'),
+(6, 4, 'Entities'),
+(7, 5, 'Artifacts'),
+(8, 6, 'Sites'),
+(9, 7, 'Dreams'),
+(10, 8, 'Objects');
 
 -- --------------------------------------------------------
 
@@ -133,8 +152,10 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`me_id`, `ac_id`, `me_domicile`, `me_description`, `me_role`, `me_dob`, `me_gender`, `me_photo_profile`, `me_photo_cover`) VALUES
-(3, 4, 'jakarta', 'Hello its me', 'witch', '2020-10-10', 1, 'img_1613790147036.png', 'img_1613790157372.png'),
-(4, 5, NULL, NULL, 'vilagger', NULL, 0, NULL, NULL);
+(1, 1, 'jakarta', 'Hello its me', 'witch', '2020-10-10', 1, 'img_1618226743678.jpeg', 'img_1618226917303.jpg'),
+(2, 2, 'bandung', 'I will make you scare', 'guardian', '2020-10-10', 1, 'img_1618226805932.jpg', 'img_1618226927647.jpg'),
+(3, 3, 'surabaya', 'i will haunt you', 'angel', '2020-10-10', 1, 'img_1618226853487.jpg', 'img_1618226946397.jpg'),
+(4, 4, 'makasar', 'never stop', 'ghost', '2020-10-10', 1, 'img_1618226898819.png', 'img_1618226966622.jpg');
 
 -- --------------------------------------------------------
 
@@ -159,15 +180,14 @@ CREATE TABLE `story` (
 --
 
 INSERT INTO `story` (`st_id`, `ct_id`, `me_id`, `st_title`, `st_photo_cover`, `st_content`, `st_favorited`, `st_created_at`, `st_updated_at`) VALUES
-(19, 3, 3, 'hantu', '', '', 3, '2021-02-20 03:06:09', '2021-02-20 03:39:53'),
-(20, 6, 3, 'daw', 'awd', 'awd', 0, '2021-02-20 03:06:56', '2021-02-20 03:17:08'),
-(21, 6, 3, 'hantu', '', '', 5, '2021-02-20 03:07:29', '2021-02-20 03:43:49'),
-(22, 6, 3, 'hantu', '', '', 0, '2021-02-20 03:07:53', '2021-02-20 03:17:08'),
-(23, 6, 3, 'hantu', '', '', 0, '2021-02-20 03:08:51', '2021-02-20 03:17:08'),
-(24, 6, 3, 'hantu', '', '', 0, '2021-02-20 03:09:57', '2021-02-20 03:17:08'),
-(25, 6, 3, 'hantu', 'img_1613790875671.png', 'awdawd', 0, '2021-02-20 03:14:35', '2021-02-20 03:14:35'),
-(26, 6, 3, 'hantu', 'img_1613790893463.png', 'awdawd', 0, '2021-02-20 03:14:53', '2021-02-20 03:17:08'),
-(27, 6, 3, 'Hantu panjang', 'img_1613790908602.png', 'Hantuuuuuuuu panjanggggg', 1, '2021-02-20 03:15:08', '2021-02-20 03:32:06');
+(1, 1, 1, 'Jembatan Merah', 'img_1618227154388.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, '2021-04-12 11:32:34', '2021-04-12 11:49:59'),
+(2, 3, 1, 'Kotak Merah', 'img_1618227208721.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, '2021-04-12 11:33:28', '2021-04-12 11:49:59'),
+(3, 2, 2, 'Sebuah Rumah', 'img_1618227232680.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 3, '2021-04-12 11:33:52', '2021-04-12 11:49:59'),
+(4, 4, 2, 'Kuntilanak Merah', 'img_1618227370933.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0, '2021-04-12 11:36:10', '2021-04-12 11:44:02'),
+(5, 2, 3, 'Dadu', 'img_1618227435621.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, '2021-04-12 11:37:15', '2021-04-12 11:49:59'),
+(6, 1, 3, 'Boneka Anabele', 'img_1618227475031.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, '2021-04-12 11:37:55', '2021-04-12 11:49:59'),
+(7, 1, 4, 'Mata merah', 'img_1618227501760.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, '2021-04-12 11:38:21', '2021-04-12 11:49:59'),
+(8, 4, 4, 'Mata merah', 'img_1618227513387.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 2, '2021-04-12 11:38:33', '2021-04-12 11:49:59');
 
 --
 -- Indexes for dumped tables
@@ -223,25 +243,25 @@ ALTER TABLE `story`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `ac_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ac_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `ct_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ct_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `favorite`
 --
 ALTER TABLE `favorite`
-  MODIFY `fa_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `fa_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `label`
 --
 ALTER TABLE `label`
-  MODIFY `la_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `la_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `member`
@@ -253,7 +273,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `story`
 --
 ALTER TABLE `story`
-  MODIFY `st_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `st_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
