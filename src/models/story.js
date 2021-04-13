@@ -107,7 +107,8 @@ module.exports = {
           JOIN category ct
             ON st.ct_id = ct.ct_id
           LEFT JOIN label la
-            ON la.st_id = st.st_id  
+            ON la.st_id = st.st_id
+      GROUP BY st.st_id        
       ORDER BY st.st_id DESC 
         LIMIT ${paginate.limit}
         OFFSET ${paginate.offset}
@@ -175,7 +176,8 @@ module.exports = {
           JOIN category ct
             ON st.ct_id = ct.ct_id
           LEFT JOIN label la
-            ON la.st_id = st.st_id  
+            ON la.st_id = st.st_id
+      GROUP BY st.st_id        
       ORDER BY st.st_favorited DESC 
         LIMIT ${paginate.limit}
         OFFSET ${paginate.offset}
