@@ -6,9 +6,7 @@ module.exports = {
   createAccountModel: (data) => {
     return new Promise((resolve, reject) => {
       const setData = {
-        ac_name: data.ac_name,
         ac_email: data.ac_email,
-        ac_phone: data.ac_phone,
         ac_password: data.ac_password
       }
       const query = 'INSERT INTO account SET ?'

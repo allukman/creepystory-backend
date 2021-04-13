@@ -22,7 +22,8 @@ const {
   statusDelete,
   statusDeleteFail,
   statusGet,
-  statusGetPaginate
+  statusGetPaginate,
+  statusGetLength
 } = require('../helpers/status')
 
 module.exports = {
@@ -168,10 +169,12 @@ module.exports = {
       }
 
       if (result.length) {
-        const totalData = await getAllData()
-        const totalPage = Math.ceil(totalData.length / limit)
+        // const totalData = await getAllData()
+        // const totalPage = Math.ceil(totalData.length / limit)
 
-        statusGetPaginate(res, result, totalPage)
+        // statusGetPaginate(res, result, totalPage)
+
+        statusGetLength(res, result)
       } else {
         statusNotFound(res)
       }

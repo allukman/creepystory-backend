@@ -39,16 +39,53 @@ module.exports = {
   getStoryByIdModel: (stId) => {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT *
-      FROM story st
-      INNER JOIN category ct
-      ON st.ct_id = ct.ct_id
-      WHERE ?
+      SELECT 
+      st.st_id,
+      st.ct_id,
+      st.me_id,
+      me.me_name,
+      me.me_photo_profile,
+      ct.ct_name,
+      st.st_title,
+      st.st_photo_cover,
+      st.st_content,
+      st.st_created_at,
+      st.st_updated_at
+        FROM story st
+        JOIN category ct
+          ON st.ct_id = ct.ct_id
+          JOIN member me 
+          ON st.me_id = me.me_id  
+        LEFT JOIN label la
+          ON la.st_id = st.st_id
+      WHERE st.?
+      GROUP BY st.st_id        
+      ORDER BY st.st_id DESC 
       `
 
-      db.query(query, { st_id: stId }, (error, results, _fields) => {
+      db.query(query, { st_id: stId }, async (error, result, _fields) => {
         if (!error) {
-          resolve(results)
+          const data = []
+          for (let i = 0; i < result.length; i++) {
+            const item = result[i]
+            const label = await getLabelNameByMeIdModel(item.st_id)
+            data[i] = {
+              st_id: item.st_id,
+              ct_id: item.ct_id,
+              me_id: item.me_id,
+              ct_name: item.ct_name,
+              me_name: item.me_name,
+              st_title: item.st_title,
+              st_content: item.st_content,
+              me_photo_profile: item.me_photo_profile,
+              st_photo_cover: item.st_photo_cover,
+              st_created_at: item.st_created_at,
+              st_updated_at: item.st_updated_at,
+              st_favorite_length: item.st_favorited,
+              st_label: label
+            }
+          }
+          resolve(data)
         } else {
           reject(error)
         }
@@ -58,17 +95,55 @@ module.exports = {
   getStoryByMemberIdModel: (meId) => {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT *
-      FROM story st
-      INNER JOIN category ct
-      ON st.ct_id = ct.ct_id
-      WHERE ?
+      SELECT 
+      st.st_id,
+      st.ct_id,
+      st.me_id,
+      me.me_name,
+      me.me_photo_profile,
+      ct.ct_name,
+      st.st_title,
+      st.st_photo_cover,
+      st.st_content,
+      st.st_created_at,
+      st.st_updated_at
+        FROM story st
+        JOIN category ct
+          ON st.ct_id = ct.ct_id
+          JOIN member me 
+          ON st.me_id = me.me_id  
+        LEFT JOIN label la
+          ON la.st_id = st.st_id
+      WHERE st.?
+      GROUP BY st.st_id        
+      ORDER BY st.st_id DESC 
       `
 
-      db.query(query, { me_id: meId }, (error, results, _fields) => {
+      db.query(query, { me_id: meId }, async (error, result, _fields) => {
         if (!error) {
-          resolve(results)
+          const data = []
+          for (let i = 0; i < result.length; i++) {
+            const item = result[i]
+            const label = await getLabelNameByMeIdModel(item.st_id)
+            data[i] = {
+              st_id: item.st_id,
+              ct_id: item.ct_id,
+              me_id: item.me_id,
+              ct_name: item.ct_name,
+              me_name: item.me_name,
+              st_title: item.st_title,
+              st_content: item.st_content,
+              me_photo_profile: item.me_photo_profile,
+              st_photo_cover: item.st_photo_cover,
+              st_created_at: item.st_created_at,
+              st_updated_at: item.st_updated_at,
+              st_favorite_length: item.st_favorited,
+              st_label: label
+            }
+          }
+          resolve(data)
         } else {
+          console.log(error)
           reject(error)
         }
       })
@@ -97,6 +172,8 @@ module.exports = {
         st.st_id,
         st.ct_id,
         st.me_id,
+        me.me_name,
+        me.me_photo_profile,
         ct.ct_name,
         st.st_title,
         st.st_photo_cover,
@@ -106,6 +183,8 @@ module.exports = {
           FROM story st
           JOIN category ct
             ON st.ct_id = ct.ct_id
+            JOIN member me 
+            ON st.me_id = me.me_id  
           LEFT JOIN label la
             ON la.st_id = st.st_id
       GROUP BY st.st_id        
@@ -139,14 +218,15 @@ module.exports = {
               ct_id: item.ct_id,
               me_id: item.me_id,
               ct_name: item.ct_name,
+              me_name: item.me_name,
               st_title: item.st_title,
-              st_photo_cover: item.st_photo_cover,
               st_content: item.st_content,
+              me_photo_profile: item.me_photo_profile,
+              st_photo_cover: item.st_photo_cover,
               st_created_at: item.st_created_at,
               st_updated_at: item.st_updated_at,
-              st_label: label,
-              st_favorite_length: datalength.length
-
+              st_favorite_length: datalength.length,
+              st_label: label
             }
           }
           resolve(data)
@@ -161,23 +241,27 @@ module.exports = {
   getAllStoryByFavoriteModel: (paginate) => {
     return new Promise((resolve, reject) => {
       const query = `
-        SELECT 
-        st.st_id,
-        st.ct_id,
-        st.me_id,
-        ct.ct_name,
-        st.st_title,
-        st.st_photo_cover,
-        st.st_content,
-        st.st_created_at,
-        st.st_updated_at,
-        st.st_favorited
-          FROM story st
-          JOIN category ct
-            ON st.ct_id = ct.ct_id
-          LEFT JOIN label la
-            ON la.st_id = st.st_id
-      GROUP BY st.st_id        
+      SELECT 
+      st.st_id,
+      st.ct_id,
+      st.me_id,
+      me.me_name,
+      me.me_photo_profile,
+      ct.ct_name,
+      st.st_title,
+      st.st_photo_cover,
+      st.st_content,
+      st.st_created_at,
+      st.st_updated_at,
+      st.st_favorited
+        FROM story st
+        JOIN category ct
+          ON st.ct_id = ct.ct_id
+          JOIN member me 
+          ON st.me_id = me.me_id  
+        LEFT JOIN label la
+          ON la.st_id = st.st_id
+      GROUP BY st.st_id      
       ORDER BY st.st_favorited DESC 
         LIMIT ${paginate.limit}
         OFFSET ${paginate.offset}
@@ -194,14 +278,15 @@ module.exports = {
               ct_id: item.ct_id,
               me_id: item.me_id,
               ct_name: item.ct_name,
+              me_name: item.me_name,
               st_title: item.st_title,
-              st_photo_cover: item.st_photo_cover,
               st_content: item.st_content,
+              me_photo_profile: item.me_photo_profile,
+              st_photo_cover: item.st_photo_cover,
               st_created_at: item.st_created_at,
               st_updated_at: item.st_updated_at,
-              st_label: label,
-              st_favorite_length: item.st_favorited
-
+              st_favorite_length: item.st_favorited,
+              st_label: label
             }
           }
           resolve(data)
@@ -223,25 +308,31 @@ module.exports = {
       } else if (filter === 2) {
         where = "WHERE ct.ct_name ='Urban Legend'"
       } else {
-        where = "WHERE ct.ct_name ='Real Story'"
+        where = "WHERE ct.ct_name ='Real Experience'"
       }
       const query = `
-        SELECT 
-        st.st_id,
-        st.ct_id,
-        st.me_id,
-        ct.ct_name,
-        st.st_title,
-        st.st_photo_cover,
-        st.st_content,
-        st.st_created_at,
-        st.st_updated_at
-          FROM story st
-          JOIN category ct
-            ON st.ct_id = ct.ct_id
-          LEFT JOIN label la
-            ON la.st_id = st.st_id
+      SELECT 
+      st.st_id,
+      st.ct_id,
+      st.me_id,
+      me.me_name,
+      me.me_photo_profile,
+      ct.ct_name,
+      st.st_title,
+      st.st_photo_cover,
+      st.st_content,
+      st.st_created_at,
+      st.st_updated_at,
+      st.st_favorited
+        FROM story st
+        JOIN category ct
+          ON st.ct_id = ct.ct_id
+          JOIN member me 
+          ON st.me_id = me.me_id  
+        LEFT JOIN label la
+          ON la.st_id = st.st_id
             ${where}  
+            GROUP BY st.st_id        
       ORDER BY st.st_id DESC 
         LIMIT ${paginate.limit}
         OFFSET ${paginate.offset}
@@ -272,13 +363,15 @@ module.exports = {
               ct_id: item.ct_id,
               me_id: item.me_id,
               ct_name: item.ct_name,
+              me_name: item.me_name,
               st_title: item.st_title,
-              st_photo_cover: item.st_photo_cover,
               st_content: item.st_content,
+              me_photo_profile: item.me_photo_profile,
+              st_photo_cover: item.st_photo_cover,
               st_created_at: item.st_created_at,
               st_updated_at: item.st_updated_at,
-              st_label: label,
-              st_favorite_length: datalength.length
+              st_favorite_length: datalength.length,
+              st_label: label
 
             }
           }
@@ -297,20 +390,26 @@ module.exports = {
       st.st_id,
       st.ct_id,
       st.me_id,
+      me.me_name,
+      me.me_photo_profile,
       ct.ct_name,
       st.st_title,
       st.st_photo_cover,
       st.st_content,
       st.st_created_at,
-      st.st_updated_at
+      st.st_updated_at,
+      st.st_favorited
         FROM story st
         JOIN category ct
           ON st.ct_id = ct.ct_id
+          JOIN member me 
+          ON st.me_id = me.me_id  
         LEFT JOIN label la
           ON la.st_id = st.st_id
          WHERE st.st_title LIKE '%${paginate.search}%'        
-         OR la.la_name LIKE '%${paginate.search}%'     
-      ORDER BY st.st_id DESC
+         OR la.la_name LIKE '%${paginate.search}%'
+         GROUP BY st.st_id        
+         ORDER BY st.st_id DESC 
          LIMIT ${paginate.limit} 
         OFFSET ${paginate.offset}
       `
@@ -327,11 +426,14 @@ module.exports = {
               ct_id: item.ct_id,
               me_id: item.me_id,
               ct_name: item.ct_name,
+              me_name: item.me_name,
               st_title: item.st_title,
-              st_photo_cover: item.st_photo_cover,
               st_content: item.st_content,
+              me_photo_profile: item.me_photo_profile,
+              st_photo_cover: item.st_photo_cover,
               st_created_at: item.st_created_at,
               st_updated_at: item.st_updated_at,
+              st_favorite_length: item.st_favorited,
               st_label: label
 
             }

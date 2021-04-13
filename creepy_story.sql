@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2021 at 01:51 PM
+-- Generation Time: Apr 13, 2021 at 05:18 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.19
 
@@ -29,9 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `ac_Id` int(11) UNSIGNED NOT NULL,
-  `ac_name` varchar(50) NOT NULL,
   `ac_email` varchar(50) NOT NULL,
-  `ac_phone` varchar(20) NOT NULL,
+  `ac_phone` varchar(20) NOT NULL DEFAULT '666',
   `ac_password` varchar(100) NOT NULL,
   `ac_status` int(11) NOT NULL DEFAULT 1,
   `ac_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -42,11 +41,12 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`ac_Id`, `ac_name`, `ac_email`, `ac_phone`, `ac_password`, `ac_status`, `ac_created_at`, `ac_updated_at`) VALUES
-(1, 'Al Lukman', 'lukman18@gmail.com', '087719182718', '$2b$10$yg/HrRR8.mk9oCsLiXgnROx7HC5R62qz/qQxIUgwUyTxWzgpLcpHC', 1, '2021-04-12 11:21:59', '2021-04-12 11:21:59'),
-(2, 'Dono Handoko', 'dono.handoko1@gmail.com', '087719182718', '$2b$10$Hd63wAKgH9VscKUxHO0Ydu9YcLuWrPr5/HTNUoUqsD/Fowz4POqji', 1, '2021-04-12 11:23:06', '2021-04-12 11:23:06'),
-(3, 'Joko Susilo', 'joko112@gmail.com', '087719182718', '$2b$10$5Av7sQy8yVakyoQ37//ZO.0ZgEy7730XKxfugNZQST6jirSx/vnN2', 1, '2021-04-12 11:23:56', '2021-04-12 11:23:56'),
-(4, 'Hendra Bambang', 'henda223@gmail.com', '087719182718', '$2b$10$AdL6oNaOQIIGVfTvN1DlfuYt5a08UPpGYY49ZU3VMio/ifVorF3hO', 1, '2021-04-12 11:24:19', '2021-04-12 11:24:19');
+INSERT INTO `account` (`ac_Id`, `ac_email`, `ac_phone`, `ac_password`, `ac_status`, `ac_created_at`, `ac_updated_at`) VALUES
+(1, 'lukman18@gmail.com', '087719182718', '$2b$10$yg/HrRR8.mk9oCsLiXgnROx7HC5R62qz/qQxIUgwUyTxWzgpLcpHC', 1, '2021-04-12 11:21:59', '2021-04-12 11:21:59'),
+(2, 'dono.handoko1@gmail.com', '087719182718', '$2b$10$Hd63wAKgH9VscKUxHO0Ydu9YcLuWrPr5/HTNUoUqsD/Fowz4POqji', 1, '2021-04-12 11:23:06', '2021-04-12 11:23:06'),
+(3, 'joko112@gmail.com', '087719182718', '$2b$10$5Av7sQy8yVakyoQ37//ZO.0ZgEy7730XKxfugNZQST6jirSx/vnN2', 1, '2021-04-12 11:23:56', '2021-04-12 11:23:56'),
+(4, 'henda13@gmail.com', '08777777777', '$2b$10$3n9L2hnBFZUgy26bMi27nOCdtw45CsxsXdLmyoP8O0yvUOlOnXCmO', 1, '2021-04-12 11:24:19', '2021-04-13 14:12:10'),
+(6, 'hello@gmail.com', '666', '$2b$10$6rx6cKj.HWOHjSMQJzC/sumxiN1FpihNNuxlsh3pRzAtygdTt6ZFm', 1, '2021-04-13 13:22:34', '2021-04-13 13:22:34');
 
 -- --------------------------------------------------------
 
@@ -138,6 +138,7 @@ INSERT INTO `label` (`la_id`, `st_id`, `la_name`) VALUES
 CREATE TABLE `member` (
   `me_id` int(11) UNSIGNED NOT NULL,
   `ac_id` int(10) UNSIGNED NOT NULL,
+  `me_name` varchar(50) NOT NULL DEFAULT 'Creepy member',
   `me_domicile` varchar(50) DEFAULT NULL,
   `me_description` text DEFAULT NULL,
   `me_role` enum('vilagger','witch','guardian','angel','ghost','hunter','werewolf','wizard') NOT NULL DEFAULT 'vilagger',
@@ -151,11 +152,12 @@ CREATE TABLE `member` (
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`me_id`, `ac_id`, `me_domicile`, `me_description`, `me_role`, `me_dob`, `me_gender`, `me_photo_profile`, `me_photo_cover`) VALUES
-(1, 1, 'jakarta', 'Hello its me', 'witch', '2020-10-10', 1, 'img_1618226743678.jpeg', 'img_1618226917303.jpg'),
-(2, 2, 'bandung', 'I will make you scare', 'guardian', '2020-10-10', 1, 'img_1618226805932.jpg', 'img_1618226927647.jpg'),
-(3, 3, 'surabaya', 'i will haunt you', 'angel', '2020-10-10', 1, 'img_1618226853487.jpg', 'img_1618226946397.jpg'),
-(4, 4, 'makasar', 'never stop', 'ghost', '2020-10-10', 1, 'img_1618226898819.png', 'img_1618226966622.jpg');
+INSERT INTO `member` (`me_id`, `ac_id`, `me_name`, `me_domicile`, `me_description`, `me_role`, `me_dob`, `me_gender`, `me_photo_profile`, `me_photo_cover`) VALUES
+(1, 1, 'Al Lukman', 'jakarta', 'Hello its me', 'witch', '2020-10-10', 1, 'img_1618226743678.jpeg', 'img_1618226917303.jpg'),
+(2, 2, 'Dono Handoko', 'bandung', 'I will make you scare', 'guardian', '2020-10-10', 1, 'img_1618226805932.jpg', 'img_1618226927647.jpg'),
+(3, 3, 'Joko Daryono', 'surabaya', 'i will haunt you', 'angel', '2020-10-10', 1, 'img_1618226853487.jpg', 'img_1618226946397.jpg'),
+(4, 4, 'Henda Bambang', 'makasar', 'never stop', 'ghost', '2020-10-10', 1, 'img_1618226898819.png', 'img_1618226966622.jpg'),
+(6, 6, 'Creepy member', NULL, NULL, 'vilagger', NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -243,7 +245,7 @@ ALTER TABLE `story`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `ac_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ac_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -267,7 +269,7 @@ ALTER TABLE `label`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `me_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `me_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `story`

@@ -24,15 +24,20 @@ module.exports = {
             fa.fa_id, 
             fa.me_id, 
             fa.st_id, 
-            fa.fa_created_at, 
+            fa.fa_created_at,
+            me.me_name, 
             st.ct_id, 
             st.st_title, 
             st.st_photo_cover, 
             st.st_content
       FROM favorite AS fa
       LEFT JOIN story AS st 
-            ON fa.st_id = st.st_id
+            ON st.st_id = fa.st_id
+      LEFT JOIN member AS me
+            ON st.me_id = me.me_id        
             WHERE fa.?
+      GROUP BY st.st_id 
+      ORDER BY st.st_id DESC      
       `
 
       db.query(query, { me_id: meId }, (error, results, _fields) => {
@@ -74,10 +79,18 @@ module.exports = {
   getFavoriteByStory: (meId, stId) => {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT *
-        FROM favorite
-       WHERE me_id = ${meId}
-         AND st_id = ${stId}
+      SELECT 
+        fa.fa_id,
+        fa.me_id,
+        fa.st_id,
+        fa.fa_created_at,
+        fa.fa_updated_at,
+        me.me_name
+        FROM favorite fa
+        LEFT JOIN member me
+        ON fa.me_id = me.me_id
+       WHERE fa.me_id = ${meId}
+         AND fa.st_id = ${stId}
       `
 
       db.query(query, (error, results, _fields) => {
@@ -128,8 +141,17 @@ module.exports = {
   getFavoriteByStId: (stId) => {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT *
-      FROM favorite WHERE ?
+      SELECT 
+      fa.fa_id,
+      fa.me_id,
+      fa.st_id,
+      fa.fa_created_at,
+      fa.fa_updated_at,
+      me.me_name
+      FROM favorite fa
+      LEFT JOIN member me
+      ON fa.me_id = me.me_id
+      WHERE ?
       `
 
       db.query(query, { st_id: stId }, (error, results, _fields) => {
