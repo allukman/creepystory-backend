@@ -59,7 +59,7 @@ module.exports = {
         if (cekPsw) {
           peyLoad = {
             ac_id: login[0].ac_id,
-            ac_name: login[0].ac_name,
+            me_name: login[0].me_name,
             ac_email: login[0].ac_email,
             ac_phone: login[0].ac_phone,
             ac_status: login[0].ac_status,
