@@ -169,11 +169,6 @@ module.exports = {
       }
 
       if (result.length) {
-        // const totalData = await getAllData()
-        // const totalPage = Math.ceil(totalData.length / limit)
-
-        // statusGetPaginate(res, result, totalPage)
-
         statusGetLength(res, result)
       } else {
         statusNotFound(res)
