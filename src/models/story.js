@@ -101,12 +101,17 @@ module.exports = {
       st.me_id,
       me.me_name,
       me.me_photo_profile,
+      me.me_photo_cover,
+      me.me_domicile,
+      me.me_description,
+      me.me_role,
       ct.ct_name,
       st.st_title,
       st.st_photo_cover,
       st.st_content,
       st.st_created_at,
-      st.st_updated_at
+      st.st_updated_at,
+      st.st_favorited
         FROM story st
         JOIN category ct
           ON st.ct_id = ct.ct_id
@@ -134,6 +139,10 @@ module.exports = {
               st_title: item.st_title,
               st_content: item.st_content,
               me_photo_profile: item.me_photo_profile,
+              me_photo_cover: item.me_photo_cover,
+              me_domicile: item.me_domicile,
+              me_description: item.me_description,
+              me_role: item.me_role,
               st_photo_cover: item.st_photo_cover,
               st_created_at: item.st_created_at,
               st_updated_at: item.st_updated_at,
