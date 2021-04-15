@@ -26,7 +26,11 @@ module.exports = {
             fa.st_id, 
             fa.fa_created_at,
             me.me_name,
-            me.me_photo_profile, 
+            me.me_photo_profile,
+            me.me_photo_cover,
+            me.me_description,
+            me.me_role,
+            me.me_domicile, 
             st.ct_id, 
             st.st_title, 
             st.st_photo_cover, 
@@ -45,6 +49,7 @@ module.exports = {
         if (!error) {
           resolve(results)
         } else {
+          console.log(error)
           reject(error)
         }
       })
