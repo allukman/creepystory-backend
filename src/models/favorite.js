@@ -34,15 +34,16 @@ module.exports = {
             st.ct_id, 
             st.st_title, 
             st.st_photo_cover, 
-            st.st_content
+            st.st_content,
+            st.st_favorited
       FROM favorite AS fa
       LEFT JOIN story AS st 
             ON st.st_id = fa.st_id
       LEFT JOIN member AS me
             ON st.me_id = me.me_id        
             WHERE fa.?
-      GROUP BY st.st_id 
-      ORDER BY st.st_id DESC      
+      GROUP BY fa.fa_id 
+      ORDER BY fa.fa_id DESC      
       `
 
       db.query(query, { me_id: meId }, (error, results, _fields) => {
