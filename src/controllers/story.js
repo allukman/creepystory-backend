@@ -120,7 +120,7 @@ module.exports = {
     try {
       const result = await getStoryByMemberIdModel(meId)
       if (result.length) {
-        statusGet(res, result)
+        statusGetLength(res, result)
       } else {
         statusNotFound(res)
       }
