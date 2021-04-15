@@ -35,6 +35,7 @@ module.exports = {
             st.st_title, 
             st.st_photo_cover, 
             st.st_content,
+            st.st_created_at,
             st.st_favorited
       FROM favorite AS fa
       LEFT JOIN story AS st 
